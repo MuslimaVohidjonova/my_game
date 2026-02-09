@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<title>Haqiqat yoki harakat</title>
+<link rel="stylesheet" href="style.css">
+<style>
+#task { transition: all 0.5s ease; font-size: 18px; padding: 20px; }
+button { cursor: pointer; margin:5px; }
+.big { padding:10px 20px; font-size:16px; margin-top:10px;}
+</style>
+</head>
+<body>
+
+<header>
+<h1>👯 Haqiqat yoki harakat</h1>
+<p>Kim qadam tashlaydi? “Qura tashlash” tugmasini bosing!</p>
+</header>
+
+<main class="game">
+    <div class="card" id="task">“Qura tashlash” tugmasini bosing!</div>
+
+    <div class="choices">
+        <button class="truth-btn" onclick="nextTask('truth')">Haqiqat</button>
+        <button class="action-btn" onclick="nextTask('action')">Harakat</button>
+    </div>
+
+    <button class="big" onclick="choosePlayer()">Qura tashlash</button>
+    <button class="big" onclick="location.href='index.html'">⬅ Orqaga</button>
+</main>
+
+<script>
+let currentPlayer = "";
+
+const truthTasks = [
+"Sizning sevimli o’yiningiz nima?",
+"Sevimli multfilmingiz nima?",
+"Siz eng ko’p qaysi o’yinchoq bilan o’ynaysiz?",
+"Sizga eng yoqqan taom nima?",
+"Eng kulguli odatingiz nima?",
+"Sizning eng sevimli superqahramoningiz kim?",
+"Sizning eng sevimli qo’shig’ingiz bormi?",
+"Sizni nima kuldiradi?",
+"Nima haqida xayol qilasiz?",
+"Sizning eng katta orzuingiz nima?",
+"Siz qaysi sportni yoqtirasiz?",
+"Siz eng sevimli mashg’ulotingiz nima?",
+"Sizning eng yaxshi do’stingiz kim?",
+"Sizning eng sevimli film qahramoningiz kim?",
+"Siz qaysi joyga sayohat qilmoqchisiz?",
+"Siz eng sevimli kitobingizni nomlang",
+"Sizning eng katta qo’rquvingiz nima?",
+"Sizning eng sevimli hayvoningiz nima?",
+"Siz eng ko’p kimni hurmat qilasiz?",
+"Siz eng sevimli festival yoki bayramingiz qaysi?",
+"Sizning eng qiziq xotirangiz nima?",
+"Siz qaysi tilni o’rganishni xohlaysiz?",
+"Siz eng sevimli o’quv mashg’ulotingiz nima?",
+"Sizning eng yaxshi shaxsiy yutug’ingiz nima?",
+"Siz eng ko’p kimga o’xshashsiz deb o’ylaysiz?",
+"Siz eng sevimli mashhur shaxs kim?",
+"Siz eng ko’p nima bilan shug’ullanasiz?",
+"Sizning eng sevimli ichimlikingiz nima?",
+"Siz eng qiziqarli film sahnasini tavsiflang",
+"Siz eng sevimli o’quv mashg’ulotini ayting",
+"Siz eng sevimli o’yinchoqingizni nomlang",
+"Siz eng sevimli shirinlikni ayting",
+"Siz eng ko’p nimani o’rganishni xohlaysiz?",
+"Siz eng sevimli rang kombinatsiyasini ayting",
+"Siz eng sevimli hayvonni taqlid qiling",
+"Siz eng qiziqarli ertakni ayting",
+"Siz eng sevimli mashg’ulotni tavsiflang",
+"Siz eng sevimli hazilni ayting",
+"Siz eng sevimli o’yin maydonchasini tasvirlang"
+];
+
+const actionTasks = [
+"3 marta sakrang",
+"Yoningizdagi odamni kuldiring",
+"Kulguli yuz ifodasini ko’rsating",
+"10 soniya nafas ushlab turing",
+"Sevimli harakatingizni ko’rsating",
+"Yoningizdagi odamni  maqtang",
+"Qog’ozga  gulni rasmini chizing",
+"Bir daqiqa jim turing",
+"Sevimli o’yiningizni tasvirlang",
+"Yoningizdagi odamga kulgili hazil qiling",
+"Biror bir narsani balandroq ko’taring",
+"Sevimli harakatingizni takrorlang",
+"Bir shirin ovoz chiqaring",
+"Sevimli hayvoningizni parodiyasini qiling",
+"O'zingizni rasmingizni chizing",
+"Yoningizdagi odamga tabassum qiling",
+"Bir latifa ayting",
+"1 daqiqa davomida kuling",
+"Bir hazil qiling",
+"Sevimli multfilm qaxramoningizni taqlid qiling",
+"Sevimli mashg’ulotni ko’rsatish",
+"Yoningizdagi odamga kulgili topshiriq berish",
+"Bir qiziqarli harakat",
+"Bir kulgili o’yin o’ynanglar",
+"10 soniya balandroq sakrash",
+"Bir kichik teatr sahnasi ko’rsatish",
+"Sevimli film sahnasini taqlid qiling",
+"Bir kulgili ovoz chiqaring",
+"Bir kichik hikoya ayting",
+"Bir mini o’yin o’ynanglar",
+"Bir qog’ozda kulgili rasm chizing",
+
+function choosePlayer() {
+    const players = ["1 o'yinchi", "2 o'yinchi"];
+    currentPlayer = players[Math.floor(Math.random()*players.length)];
+    const taskEl = document.getElementById("task");
+    taskEl.innerText = "Qadam tashlaydi: " + currentPlayer + "!";
+    taskEl.style.color = currentPlayer==="Men"?"#ff6b81":"#6c63ff";
+}
+
+function nextTask(type){
+    if(currentPlayer===""){
+        alert("Avvalo ‘Qura tashlash’ tugmasini bosing!");
+        return;
+    }
+    let task="";
+    if(type==='truth'){
+        task = truthTasks[Math.floor(Math.random()*truthTasks.length)];
+    } else {
+        task = actionTasks[Math.floor(Math.random()*actionTasks.length)];
+    }
+    const taskEl = document.getElementById("task");
+    taskEl.innerText = currentPlayer + ": " + task;
+    taskEl.style.transform = "scale(1.05)";
+    setTimeout(()=>{taskEl.style.transform="scale(1)";},300);
+}
+</script>
+
+</body>
+</html>
